@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب فاتورة ضريبية - Orange Bed & Bath</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
+        :root {
+            --primary: #FF7F00;
+            /* Orange color */
+            --primary-dark: #cc6600;
+            --bg: #f5f7fa;
+            --white: #ffffff;
+            --text: #333333;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: var(--white);
+            width: 100%;
+            max-width: 480px;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border-top: 6px solid var(--primary);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .header img {
+            width: 80px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .header p {
+            color: #666;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        select,
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            /* Important for padding */
+        }
+
+        select:focus,
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 127, 0, 0.1);
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .alert {
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .alert-success {
+            background-color: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .alert-error {
+            background-color: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <!-- Placeholder for Logo if needed, works without it -->
+            <h1>طلب فاتورة ضريبية</h1>
+            <p>يرجى تعبئة البيانات بدقة لضمان إصدار الفاتورة</p>
+        </div>
+
+        <form id="invoiceForm">
+            <div class="form-group">
+                <label for="outlet">اسم المعرض</label>
+                <select id="outlet" required>
+                    <option value="" disabled selected>اختر المعرض...</option>
+                    <option value="04-Andalos Mall">04-Andalos Mall</option>
+                    <option value="05-Haifa Mall">05-Haifa Mall</option>
+                    <option value="06-Red Sea Mall">06-Red Sea Mall</option>
+                    <option value="07-Arab Mall">07-Arab Mall</option>
+                    <option value="08-Makkah Mall">08-Makkah Mall</option>
+                    <option value="09-Al-Salam Mall">09-Al-Salam Mall</option>
+                    <option value="11-Jouri Mall">11-Jouri Mall</option>
+                    <option value="12-Al_Hamra Mall">12-Al_Hamra Mall</option>
+                    <option value="13-Al-Yasmin Mall">13-Al-Yasmin Mall</option>
+                    <option value="14-Al Kamal Mall">14-Al Kamal Mall</option>
+                    <option value="15-Riyadh Othaim Mall">15-Riyadh Othaim Mall</option>
+                    <option value="16-Ehsa Othaim Mall">16-Ehsa Othaim Mall</option>
+                    <option value="17-Arar Othaim Mall">17-Arar Othaim Mall</option>
+                    <option value="18-Al_Khayyat Center">18-Al_Khayyat Center</option>
+                    <option value="19-Hail Othaim Mall">19-Hail Othaim Mall</option>
+                    <option value="20-Sitten Street Makkah">20-Sitten Street Makkah</option>
+                    <option value="21-Abha Al_Rashid Mall New">21-Abha Al_Rashid Mall New</option>
+                    <option value="22-Tabuk Park">22-Tabuk Park</option>
+                    <option value="23-Alia Mall Madinah">23-Alia Mall Madinah</option>
+                    <option value="24-Yanbu Dana Mall">24-Yanbu Dana Mall</option>
+                    <option value="25-Rabwa Othaim Mall">25-Rabwa Othaim Mall</option>
+                    <option value="26-Al-Noor Mall Madinah">26-Al-Noor Mall Madinah</option>
+                    <option value="27-Dhahran Mall khobar">27-Dhahran Mall khobar</option>
+                    <option value="28-Al Nakheel Mall Dammam">28-Al Nakheel Mall Dammam</option>
+                    <option value="29-Al Nakheel Mall Riyadh">29-Al Nakheel Mall Riyadh</option>
+                    <option value="30-Tala Mall Riyadh">30-Tala Mall Riyadh</option>
+                    <option value="32-Atyaf Mall Riyadh">32-Atyaf Mall Riyadh</option>
+                    <option value="36-Al jubail Mall">36-Al jubail Mall</option>
+                    <option value="38-Al_Riyadh Park">38-Al_Riyadh Park</option>
+                    <option value="39-Salam Mall Riyadh">39-Salam Mall Riyadh</option>
+                    <option value="40-Hayat Mall Riyad">40-Hayat Mall Riyad</option>
+                    <option value="42-Dareen Mall Dammam">42-Dareen Mall Dammam</option>
+                    <option value="43-Mujan Park">43-Mujan Park</option>
+                    <option value="44-Al-Jouf Center">44-Al-Jouf Center</option>
+                    <option value="45- Riyadh Gallery Mall">45- Riyadh Gallery Mall</option>
+                    <option value="46-Khaleej Mall Riyadh">46-Khaleej Mall Riyadh</option>
+                    <option value="47-Al-Nakheel Plaza">47-Al-Nakheel Plaza</option>
+                    <option value="48 - Jeddah Park">48 - Jeddah Park</option>
+                    <option value="49-AlAhsa Mall">49-AlAhsa Mall</option>
+                    <option value="50-Meem Plaza Riyadh">50-Meem Plaza Riyadh</option>
+                    <option value="51-Park Avenue Riyadh">51-Park Avenue Riyadh</option>
+                    <option value="52-Al_Baha Mall">52-Al_Baha Mall</option>
+                    <option value="53-Al Basateen Mall">53-Al Basateen Mall</option>
+                    <option value="54-THE VILLAGE">54-THE VILLAGE</option>
+                    <option value="55- Jabl Omar">55- Jabl Omar</option>
+                    <option value="56- Aziz Mall 2">56- Aziz Mall 2</option>
+                    <option value="57-Sauq7">57-Sauq7</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="invoiceNumber">رقم الفاتورة (Invoice ID)</label>
+                <input type="text" id="invoiceNumber" placeholder="مثال: S-00100" required>
+            </div>
+
+            <div class="form-group">
+                <label for="companyName">اسم الشركة (العميل)</label>
+                <input type="text" id="companyName" placeholder="اسم الشركة كما في السجل" required>
+            </div>
+
+            <div class="form-group">
+                <label for="vat">الرقم الضريبي</label>
+                <input type="number" id="vat" placeholder="15 رقم" required>
+            </div>
+
+            <button type="submit" id="submitBtn">
+                <span id="btnText">إرسال الطلب</span>
+                <div class="spinner" id="spinner"></div>
+            </button>
+        </form>
+
+        <div id="successMessage" class="alert alert-success">
+            تم إرسال الطلب بنجاح! سيتم معالجته قريباً.
+        </div>
+
+        <div id="errorMessage" class="alert alert-error">
+            حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // CONFIGURATION
+        // ==========================================
+        // ⚠️ استبدل الرابط أدناه برابط الـ Web App الخاص بك بعد النشر
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwGbFDV_XcsXYquLQbnYrwY0D-VlLb29kFev9ZmHlfaJWG2H4euQ3wyTq833l56DjmAkw/exec';
+        // ==========================================
+
+        document.getElementById('invoiceForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (SCRIPT_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') {
+                alert('خطأ: لم يتم وضع رابط Web App في الكود. تواصل مع الدعم الفني.');
+                return;
+            }
+
+            const btn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const spinner = document.getElementById('spinner');
+            const successMsg = document.getElementById('successMessage');
+            const errorMsg = document.getElementById('errorMessage');
+
+            // Reset UI
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            btn.disabled = true;
+            btnText.style.display = 'none';
+            spinner.style.display = 'block';
+
+            // Data
+            const formData = new FormData();
+            formData.append('outlet', document.getElementById('outlet').value);
+            formData.append('invoiceNumber', document.getElementById('invoiceNumber').value);
+            formData.append('companyName', document.getElementById('companyName').value);
+            formData.append('vat', document.getElementById('vat').value);
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        successMsg.style.display = 'block';
+                        document.getElementById('invoiceForm').reset();
+                    } else {
+                        throw new Error('Server returned error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    errorMsg.style.display = 'block';
+                    errorMsg.textContent = 'حدث خطأ: ' + error.message;
+                })
+                .finally(() => {
+                    btn.disabled = false;
+                    btnText.style.display = 'inline';
+                    spinner.style.display = 'none';
+                });
+        });
+    </script>
+</body>
+
+</html>
