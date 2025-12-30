@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>طلب فاتورة ضريبية - Orange Bed & Bath</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+        @import url('https://script.google.com/macros/s/AKfycbwGbFDV_XcsXYquLQbnYrwY0D-VlLb29kFev9ZmHlfaJWG2H4euQ3wyTq833l56DjmAkw/exec');
 
         :root {
             --primary: #FF7F00;
@@ -238,6 +238,12 @@
                 <input type="number" id="vat" placeholder="15 رقم" required>
             </div>
 
+                   <div class="form-group">
+                        <label for="nationalAddress">العنوان الوطني للعميل</label>
+                        <input type="text" id="nationalAddress" placeholder="مثال: حي... شارع... ..." required>
+                   </div>
+
+
             <button type="submit" id="submitBtn">
                 <span id="btnText">إرسال الطلب</span>
                 <div class="spinner" id="spinner"></div>
@@ -288,12 +294,23 @@
             formData.append('invoiceNumber', document.getElementById('invoiceNumber').value);
             formData.append('companyName', document.getElementById('companyName').value);
             formData.append('vat', document.getElementById('vat').value);
+                     formData.append('nationalAddress', document.getElementById('nationalAddress').value);
+
+            
+
 
             fetch(SCRIPT_URL, {
                 method: 'POST',
                 body: formData
             })
-                .then(response => response.json())
+
+                             .then(async response => {
+                               const text = await response.text();
+                               console.log("RAW RESPONSE:", text);
+                               return JSON.parse(text);
+                           })
+
+
                 .then(data => {
                     if (data.status === 'success') {
                         successMsg.style.display = 'block';
